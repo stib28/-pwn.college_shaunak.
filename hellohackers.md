@@ -5,6 +5,11 @@ invoke a command to obtain the flag.
 **FLAG:**  `pwn.college{4lsLQ2RmsMYeMagVq99xwP4BLR0.QX3YjM1wSNxkjNzEzW}`
 
 simply open a terminal and execute the hello command. The flag is obtained.
+```
+hacker@hello~intro-to-commands:~$ hello
+Success! Here is your flag:
+pwn.college{4lsLQ2RmsMYeMagVq99xwP4BLR0.QX3YjM1wSNxkjNzEzW}
+```
 
 ## WHAT I LEARNED 
 learned to write basic commands. commands are case sensitive.
@@ -18,6 +23,11 @@ run a command with a single argument.
 
 ## MY SOLVE 
 **FLAG:** `pwn.college{EErZb62YpXys82XBEjBVgtvOrRu.QX4YjM1wSNxkjNzEzW}`
+```
+hacker@hello~intro-to-commands:~$ hello
+Success! Here is your flag:
+pwn.college{4lsLQ2RmsMYeMagVq99xwP4BLR0.QX3YjM1wSNxkjNzEzW}
+```
 
 execute the hello hackers commandline to obtain the flag.
 
@@ -32,6 +42,9 @@ find the flag by scrolling through saved commands
 
 ## MY SOLVE 
 **FLAG:** `pwn.college{IpFTk1-tlLtqiSFxqjeLphXAoqN.0lNzEzNxwSNxkjNzEzW}`
+```
+hacker@hello~command-history:~$ the flag is pwn.college{IpFTk1-tlLtqiSFxqjeLphXAoqN.0lNzEzNxwSNxkjNzEzW}
+```
 
 used the up arrow key once to obtain the flag
 

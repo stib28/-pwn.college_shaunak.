@@ -34,3 +34,22 @@ using `cat` command to read a file not present in the main directory.
 ## REFERENCES 
 none.
 
+
+# 3.MORE CATTING PRACTICE
+reading a file with its absolute path present in a random directory.
+
+## MY SOLVE
+**FLAG:** `pwn.college{srSvxZiDYDxAap8BUQgtgtoPFW0.QXwITO0wSNxkjNzEzW}`
+```
+hacker@commands~more-catting-practice:~$ cat /usr/lib/dbus-1.0/flag
+pwn.college{srSvxZiDYDxAap8BUQgtgtoPFW0.QXwITO0wSNxkjNzEzW}
+```
+the absolute path of the flag was clearly mentioned. Simply plugged in the absolute path as argument to the `cat` command.
+
+## WHAT I LEARNED 
+using `cat` to read a file with its absolute path.
+
+## REFERENCES 
+none.
+
+

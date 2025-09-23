@@ -52,4 +52,22 @@ using `cat` to read a file with its absolute path.
 ## REFERENCES 
 none.
 
+# 4.GREPPING FOR A NEEDLE IN A HAYSTACK
+use grep command to search for the flag
+
+## MY SOLVE 
+**FLAG:** `pwn.college{00F8sgBvBxNmCz1b6dryVDRasDV.QX3EDO0wSNxkjNzEzW}`
+```
+hacker@commands~grepping-for-a-needle-in-a-haystack:~$ grep pwn.college /challenge/data.txt
+pwn.college{00F8sgBvBxNmCz1b6dryVDRasDV.QX3EDO0wSNxkjNzEzW}
+
+```
+used the grep command with the mentioned text and path of the file as argument.
+
+## WHAT I LEARNED 
+sometimes, files are too big for cat command, so `grep` is used to search for the contents of the file. grep will search the file for lines of text containing the given string to search and print them to the console.
+
+## REFERENCES 
+none.
+
 

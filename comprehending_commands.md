@@ -180,4 +180,186 @@ used the `mv` command to move one file into another.
 none.
 
 
+# 10. HIDDEN FILES
+find the hidden files using `ls -a` command.
+
+## MY SOLVE 
+**flag:** `pwn.college{Qzwwx1rwLyOI9ZFFV4VCSlmuh9N.QXwUDO0wSNxkjNzEzW}`
+```
+hacker@commands~hidden-files:~$ cd /
+hacker@commands~hidden-files:/$ ls
+bin  boot  challenge  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  nix  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+hacker@commands~hidden-files:/$ ls -a
+.   .dockerenv             bin   challenge  etc   lib    lib64   media  nix  proc  run   srv  tmp  var
+..  .flag-285592085010674  boot  dev        home  lib32  libx32  mnt    opt  root  sbin  sys  usr
+hacker@commands~hidden-files:/$ cat /.flag-285592085010674
+pwn.college{Qzwwx1rwLyOI9ZFFV4VCSlmuh9N.QXwUDO0wSNxkjNzEzW}
+```
+switched from home directory to the mentioned `/` category. Used `ls -a` to list all the files including hidden files. Used `cat` to read contents of the hidden file.
+
+## WHAT I LEARNED 
+by default linux does not show the list of the files that start with `.`. Hence we use a modified command of list that is `ls -a` to be able to view all the possible files in the directory.
+
+## REFERENCES 
+none.
+
+
+# 11. AN EPIC FILESYSTEM QUEST
+find the flag using learned commands. 
+
+## MY SOLVE 
+**FLAG:** `pwn.college{I2sfbBs-vFiqhD5EsBdB2F1X4h1.QX5IDO0wSNxkjNzEzW}`
+```
+hacker@commands~an-epic-filesystem-quest:~$ cd /
+hacker@commands~an-epic-filesystem-quest:/$ ls -a
+.  ..  .dockerenv  MESSAGE  bin  boot  challenge  dev  etc  flag  home  lib  lib32  lib64  libx32  media  mnt  nix  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+hacker@commands~an-epic-filesystem-quest:/$ cat MESSAGE
+Lucky listing!
+The next clue is in: /opt/kropr/target/release/.fingerprint/unicode-ident-1cf4f389b3b3ef11
+
+The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
+hacker@commands~an-epic-filesystem-quest:/$ cd /opt/kropr/target/release/.fingerprint/unicode-ident-1cf4f389b3b3ef11
+hacker@commands~an-epic-filesystem-quest:/opt/kropr/target/release/.fingerprint/unicode-ident-1cf4f389b3b3ef11$ ls -a
+.  ..  .GIST  dep-lib-unicode_ident  invoked.timestamp  lib-unicode_ident  lib-unicode_ident.json
+hacker@commands~an-epic-filesystem-quest:/opt/kropr/target/release/.fingerprint/unicode-ident-1cf4f389b3b3ef11$ cat .GIST
+Congratulations, you found the clue!
+The next clue is in: /usr/share/locale/nl
+
+The next clue is **delayed** --- it will not become readable until you enter the directory with 'cd'.
+hacker@commands~an-epic-filesystem-quest:/opt/kropr/target/release/.fingerprint/unicode-ident-1cf4f389b3b3ef11$ cd /usr/share/locale/nl
+hacker@commands~an-epic-filesystem-quest:/usr/share/locale/nl$ ls -a
+.  ..  LC_MESSAGES  MEMO
+hacker@commands~an-epic-filesystem-quest:/usr/share/locale/nl$ cat MEMO
+Lucky listing!
+The next clue is in: /opt/linux/linux-5.4/arch/parisc/kernel/syscalls
+hacker@commands~an-epic-filesystem-quest:/usr/share/locale/nl$ cat LC_MESSAGES
+cat: LC_MESSAGES: Is a directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/locale/nl$ cd  /opt/linux/linux-5.4/arch/parisc/kernel/syscalls
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/arch/parisc/kernel/syscalls$ ls -a
+.  ..  Makefile  SECRET  syscall.tbl  syscallhdr.sh  syscalltbl.sh
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/arch/parisc/kernel/syscalls$ cat SECRET
+Yahaha, you found me!
+The next clue is in: /usr/share/perl/5.30.0/CPAN/FTP
+
+The next clue is **delayed** --- it will not become readable until you enter the directory with 'cd'.
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/arch/parisc/kernel/syscalls$ cd /usr/share/perl/5.30.0/CPAN/FTP
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ ls -a
+.  ..  EVIDENCE  netrc.pm
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ cat EVIDENCE
+Congratulations, you found the clue!
+The next clue is in: /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe
+
+Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$  /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe/.
+bash: /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe/.: Is a directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ ls /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe
+CLUE-TRAPPED  xgbe-common.h  xgbe-debugfs.c  xgbe-dev.c  xgbe-ethtool.c  xgbe-main.c  xgbe-pci.c     xgbe-phy-v2.c    xgbe-ptp.c
+Makefile      xgbe-dcb.c     xgbe-desc.c     xgbe-drv.c  xgbe-i2c.c      xgbe-mdio.c  xgbe-phy-v1.c  xgbe-platform.c  xgbe.h
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ cat CLUE-TRAPPED
+cat: CLUE-TRAPPED: No such file or directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ touch CLUE-TRAPPED
+touch: cannot touch 'CLUE-TRAPPED': Permission denied
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ cat Makefile
+cat: Makefile: No such file or directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ ls -a  /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe
+.   CLUE-TRAPPED  xgbe-common.h  xgbe-debugfs.c  xgbe-dev.c  xgbe-ethtool.c  xgbe-main.c  xgbe-pci.c     xgbe-phy-v2.c    xgbe-ptp.c
+..  Makefile      xgbe-dcb.c     xgbe-desc.c     xgbe-drv.c  xgbe-i2c.c      xgbe-mdio.c  xgbe-phy-v1.c  xgbe-platform.c  xgbe.h
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ cat /opt/linux/linux-5.4/drivers/net/ethernet/amd/xgbe/CLUE-TRAPPED
+Tubular find!
+The next clue is in: /opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/term
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/CPAN/FTP$ cd /opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/term
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/term$ ls -a
+.   WHISPER      __pycache__   key.py        keymap.py    spinners.py  termcap.py  unix_termcap.py
+..  __init__.py  completer.py  keyconsts.py  readline.py  term.py      text.py     windows_termcap.py
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/term$ cat WHISPER
+Tubular find!
+The next clue is in: /opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__
+
+The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/term$ cd /opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__$ ls -a
+.                             ber.cpython-38.pyc            ed25519key.cpython-38.pyc      kex_gss.cpython-38.pyc  sftp.cpython-38.pyc           transport.cpython-38.pyc
+..                            buffered_pipe.cpython-38.pyc  file.cpython-38.pyc            message.cpython-38.pyc  sftp_attr.cpython-38.pyc      util.cpython-38.pyc
+.NUGGET                       channel.cpython-38.pyc        hostkeys.cpython-38.pyc        packet.cpython-38.pyc   sftp_client.cpython-38.pyc    win_openssh.cpython-38.pyc
+__init__.cpython-38.pyc       client.cpython-38.pyc         kex_curve25519.cpython-38.pyc  pipe.cpython-38.pyc     sftp_file.cpython-38.pyc      win_pageant.cpython-38.pyc
+_version.cpython-38.pyc       common.cpython-38.pyc         kex_ecdh_nist.cpython-38.pyc   pkey.cpython-38.pyc     sftp_handle.cpython-38.pyc
+_winapi.cpython-38.pyc        compress.cpython-38.pyc       kex_gex.cpython-38.pyc         primes.cpython-38.pyc   sftp_server.cpython-38.pyc
+agent.cpython-38.pyc          config.cpython-38.pyc         kex_group1.cpython-38.pyc      proxy.cpython-38.pyc    sftp_si.cpython-38.pyc
+auth_handler.cpython-38.pyc   dsskey.cpython-38.pyc         kex_group14.cpython-38.pyc     rsakey.cpython-38.pyc   ssh_exception.cpython-38.pyc
+auth_strategy.cpython-38.pyc  ecdsakey.cpython-38.pyc       kex_group16.cpython-38.pyc     server.cpython-38.pyc   ssh_gss.cpython-38.pyc
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__$ cat .NUGGET
+Great sleuthing!
+The next clue is in: /opt/linux/linux-5.4/arch/ia64/include/asm
+
+Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__$ ls /opt/linux/linux-5.4/arch/ia64/include/asm
+CUE-TRAPPED       bug.h          div64.h              fpswa.h        iosapic.h         local.h        native      pgtable.h    spinlock_types.h  unaligned.h
+Kbuild            bugs.h         dma-mapping.h        ftrace.h       irq.h             local64.h      nodedata.h  processor.h  string.h          uncached.h
+acenv.h           cache.h        dma.h                futex.h        irq_regs.h        mca.h          numa.h      ptrace.h     switch_to.h       unistd.h
+acpi-ext.h        cacheflush.h   dmi.h                gcc_intrin.h   irq_remapping.h   mca_asm.h      page.h      sal.h        syscall.h         unwind.h
+acpi.h            checksum.h     early_ioremap.h      hardirq.h      irqflags.h        meminit.h      pal.h       sections.h   termios.h         user.h
+agp.h             clocksource.h  elf.h                hugetlb.h      kdebug.h          mman.h         param.h     serial.h     thread_info.h     ustack.h
+asm-offsets.h     cpu.h          emergency-restart.h  hw_irq.h       kexec.h           mmiowb.h       parport.h   shmparam.h   timex.h           uv
+asm-prototypes.h  cputime.h      esi.h                idle.h         kmap_types.h      mmu.h          patch.h     signal.h     tlb.h             vga.h
+asmmacro.h        current.h      exception.h          intrinsics.h   kprobes.h         mmu_context.h  pci.h       smp.h        tlbflush.h        xor.h
+atomic.h          cyclone.h      export.h             io.h           kregs.h           mmzone.h       percpu.h    sn           topology.h
+barrier.h         delay.h        extable.h            iommu.h        libata-portmap.h  module.h       perfmon.h   sparsemem.h  types.h
+bitops.h          device.h       fb.h                 iommu_table.h  linkage.h         msidef.h       pgalloc.h   spinlock.h   uaccess.h
+hacker@commands~an-epic-filesystem-quest:/opt/pwndbg/.venv/lib/python3.8/site-packages/paramiko/__pycache__$ cat /opt/linux/linux-5.4/arch/ia64/include/asm/CUE-TRAPPED
+CONGRATULATIONS! Your perserverence has paid off, and you have found the flag!
+It is: pwn.college{I2sfbBs-vFiqhD5EsBdB2F1X4h1.QX5IDO0wSNxkjNzEzW}
+```
+started simple, switched to given `/` directory and listed files. Next steps were a series of switching to different directories and listing out hidden files and then reading the files which were hinted. Also used absolute paths to read out files instead of swicthing to the directory. Honestly, just followed the steps and hints provided.
+
+## WHAT I LEARNED 
+the use of `ls -a` `cat` `cd` commands properly. Fun hunt!
+
+## REFERENCES 
+none.
+
+# 11. MAKING DIRECTORIES
+create a directory and a file to obtain the flag.
+
+## MY SOLVE 
+**FLAG:** `pwn.college{AJ0JT3tcVobSU72z2zhs-pSWGXx.QXxMDO0wSNxkjNzEzW}`
+```
+hacker@commands~making-directories:~$ mkdir /tmp/pwn
+hacker@commands~making-directories:~$ cd /tmp/pwn
+hacker@commands~making-directories:/tmp/pwn$ touch college
+hacker@commands~making-directories:/tmp/pwn$ /challenge/run
+Success! Here is your flag:
+pwn.college{AJ0JT3tcVobSU72z2zhs-pSWGXx.QXxMDO0wSNxkjNzEzW}
+```
+simply created a new directory using `mkdir` and changed to it. Created a new file using `touch` command. 
+
+## WHAT I LEARNED 
+`mkdir` is used to make a directory.
+
+
+# 13. LINKING FILES 
+create a symbolic link to read out the flag.
+
+## MY SOLVE 
+
+**FLAG:** `pwn.college{0Hr5JWY-Pf7v1OMPuu7wCIsCr6-.QX5ETN1wSNxkjNzEzW}`
+```
+hacker@commands~linking-files:~$ ln -s /flag /home/hacker/not-the-flag
+hacker@commands~linking-files:~$ /challenge/catflag
+About to read out the /home/hacker/not-the-flag file!
+pwn.college{0Hr5JWY-Pf7v1OMPuu7wCIsCr6-.QX5ETN1wSNxkjNzEzW}
+```
+set a symbolic link using the `ln -s ` command between the original flag file and the duplicate file. Since the command would read the contents of the address of the duplicate file, a symbolic link that lead to the original file works.
+
+## WHAT I LEARNED 
+command to create a symbolic link, differences between hard link and soft(symbolic) link.
+
+## REFERENCES 
+SYMBOLIC LINKS VIDEO in pwn.college
+
+
+
+
+
+
+
 

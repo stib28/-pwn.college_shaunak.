@@ -317,7 +317,7 @@ the use of `ls -a` `cat` `cd` commands properly. Fun hunt!
 ## REFERENCES 
 none.
 
-# 11. MAKING DIRECTORIES
+# 12. MAKING DIRECTORIES
 create a directory and a file to obtain the flag.
 
 ## MY SOLVE 
@@ -336,7 +336,7 @@ simply created a new directory using `mkdir` and changed to it. Created a new fi
 `mkdir` is used to make a directory.
 
 
-# 13. LINKING FILES 
+# 14. LINKING FILES 
 create a symbolic link to read out the flag.
 
 ## MY SOLVE 
@@ -355,6 +355,7 @@ command to create a symbolic link, differences between hard link and soft(symbol
 
 ## REFERENCES 
 SYMBOLIC LINKS VIDEO in pwn.college
+
 
 
 

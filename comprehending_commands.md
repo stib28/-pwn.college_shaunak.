@@ -90,4 +90,94 @@ finding similiarities by eye balling two files is hard and not feasible, the com
 ## REFERENCES 
 none.
 
+#6.LISTING FILES 
+list the contents of a directory to find the file containing flag
+
+## MY SOLVE 
+**FLAG:** `pwn.college{4QtxmUjtudQoIbUYSwiIfjW431i.QX4IDO0wSNxkjNzEzW}`
+```
+hacker@commands~listing-files:~$ ls /challenge
+28390-renamed-run-27175  DESCRIPTION.md
+hacker@commands~listing-files:~$ /challenge/28390-renamed-run-27175
+Yahaha, you found me! Here is your flag:
+pwn.college{4QtxmUjtudQoIbUYSwiIfjW431i.QX4IDO0wSNxkjNzEzW}
+```
+used `ls` to list down the files in the `challenge` directory.File was given, simply opened the file to get the flag.
+
+## WHAT I LEARNED 
+the `ls` command is used to list down the files/directories inside a directory.
+
+## REFERENCES 
+none.
+
+
+## 7.TOUCHING FILES 
+create file using `touch` command.
+
+## MY SOLVE 
+**FLAG:** `pwn.college{0t87AIUyMfbRyhkIVsgRgyAVcJ2.QXwMDO0wSNxkjNzEzW}`
+```
+hacker@commands~touching-files:~$ touch /tmp/pwn
+hacker@commands~touching-files:~$ touch /tmp/college
+hacker@commands~touching-files:~$ /challenge/run
+Success! Here is your flag:
+pwn.college{0t87AIUyMfbRyhkIVsgRgyAVcJ2.QXwMDO0wSNxkjNzEzW}
+```
+used the `touch` command to create two files in the home directory and ran `/challenge/run` to get flag.
+
+## WHAT I LEARNED 
+`touch` command used to create files.
+
+## REFERENCES 
+none.
+
+#8. REMOVING FILES 
+remove a file from directory using `rm` command.
+
+## MY SOLVE 
+**FLAG:** `pwn.college{YMr6loxLCyPE_dBcX_pbTgusEU-.QX2kDM1wSNxkjNzEzW}`
+```
+hacker@commands~removing-files:~$ ls
+Desktop  delete_me  f
+hacker@commands~removing-files:~$ rm delete_me
+hacker@commands~removing-files:~$ ls
+Desktop  f
+hacker@commands~removing-files:~$ /challenge/check
+Excellent removal. Here is your reward:
+pwn.college{YMr6loxLCyPE_dBcX_pbTgusEU-.QX2kDM1wSNxkjNzEzW}
+```
+listed the files to be deleted using `ls` and used `rm` to delete the files to obtain the flag.
+
+## WHAT I LEARNED 
+`rm` command used to delete files.
+
+## REFERENCES 
+none.
+
+
+#9. MOVING FILES 
+use the `mv` command to move files to obtain flag.
+
+## MY SOLVE 
+**FLAG:** `pwn.college{EH71C3CU3t22YgoqDAfDpOWv_8b.0VOxEzNxwSNxkjNzEzW}`
+```
+hacker@commands~moving-files:~$ ls
+Desktop  f
+hacker@commands~moving-files:~$ mv /flag /tmp/hack-the-planet
+Correct! Performing 'mv /flag /tmp/hack-the-planet'.
+hacker@commands~moving-files:~$ /challenge/hack
+bash: /challenge/hack: No such file or directory
+hacker@commands~moving-files:~$ /challenge/check
+Congrats! You successfully moved the flag to /tmp/hack-the-planet! Here it is:
+pwn.college{EH71C3CU3t22YgoqDAfDpOWv_8b.0VOxEzNxwSNxkjNzEzW}
+```
+used the `mv` command to move the file `/flag` into `/tmp/hack-the-planet`. Then ran /challenge/check to obtain flag.
+
+## WHAT I LEARNED
+used the `mv` command to move one file into another.
+
+## REFERENCES 
+none.
+
+
 

@@ -90,7 +90,7 @@ finding similiarities by eye balling two files is hard and not feasible, the com
 ## REFERENCES 
 none.
 
-#6.LISTING FILES 
+# 6.LISTING FILES 
 list the contents of a directory to find the file containing flag
 
 ## MY SOLVE 
@@ -111,7 +111,7 @@ the `ls` command is used to list down the files/directories inside a directory.
 none.
 
 
-## 7.TOUCHING FILES 
+# 7.TOUCHING FILES 
 create file using `touch` command.
 
 ## MY SOLVE 
@@ -131,7 +131,7 @@ used the `touch` command to create two files in the home directory and ran `/cha
 ## REFERENCES 
 none.
 
-#8. REMOVING FILES 
+# 8. REMOVING FILES 
 remove a file from directory using `rm` command.
 
 ## MY SOLVE 
@@ -155,7 +155,7 @@ listed the files to be deleted using `ls` and used `rm` to delete the files to o
 none.
 
 
-#9. MOVING FILES 
+# 9. MOVING FILES 
 use the `mv` command to move files to obtain flag.
 
 ## MY SOLVE 

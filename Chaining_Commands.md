@@ -283,7 +283,7 @@ none
 reading scripts
 
 ## MY SOLVE
-**Flag:** `pwn.college{slZaCAsMcg8D6Jwb9RC4zXQ7Mpq.0lMwgDOxwCN1gjNzEzW}`
+**Flag:** `pwn.college{kBR_QXN4Q3f-IY_ehYfzMhecwZT.0lMwgDOxwSNxkjNzEzW}`
 
 
 ```
@@ -301,7 +301,7 @@ fi
 hacker@chaining~reading-shell-scripts:~$ /challenge/run
 hack the PLANET
 CORRECT! Your flag:
-pwn.college{slZaCAsMcg8D6Jwb9RC4zXQ7Mpq.0lMwgDOxwCN1gjNzEzW}
+pwn.college{kBR_QXN4Q3f-IY_ehYfzMhecwZT.0lMwgDOxwSNxkjNzEzW}
 ```
 we cat the script and read what is the password argument need to get the flag
 
